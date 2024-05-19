@@ -141,7 +141,7 @@ jobs:
 
   release-docker:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: blacksmith-16vcpu-ubuntu-2204
     strategy:
       matrix:
         os: [ubuntu-20.04]
@@ -197,7 +197,7 @@ jobs:
   combine-sign:
 
     needs: release-docker
-    runs-on: ${{ matrix.os }}
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     strategy:
       matrix:
         os: [ubuntu-20.04]

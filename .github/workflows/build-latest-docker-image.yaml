@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-20.04
+          - blacksmith-4vcpu-ubuntu-2204
     runs-on: ${{ matrix.os }}
     permissions:
       id-token: write
@@ -109,3 +109,4 @@ jobs:
         run: |
           docker image tag axelar/core "${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}-debug"
           docker push "${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}-debug"
+
