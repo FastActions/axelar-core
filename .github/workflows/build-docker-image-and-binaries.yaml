@@ -26,7 +26,7 @@ jobs:
       matrix:
         go-version:
           - 1.21
-        os: [ubuntu-20.04, macos-latest]
+        os: [blacksmith-4vcpu-ubuntu-2204, macos-latest]
         arch: [amd64, arm64, arm]
         exclude:
           - {os: "macos-latest", arch: "arm"}
@@ -82,7 +82,7 @@ jobs:
           if [ "${{ github.event.inputs.cgo }}" == "true" ]; then
             export CGO_ENABLED=1
           fi
-          OS=$(echo "$OS_TYPE" | sed -e 's/ubuntu-20.04/linux/; s/macos-latest/darwin/')
+          OS=$(echo "$OS_TYPE" | sed -e 's/blacksmith-4vcpu-ubuntu-2204/linux/; s/macos-latest/darwin/')
           make build-binaries-multiarch
           mv ./bin/axelard ./bin/axelard-"$OS"-"$ARCH"-"$SEMVER"
           gpg --armor --detach-sign  ./bin/axelard-"$OS"-"$ARCH"-"$SEMVER"
@@ -141,10 +141,10 @@ jobs:
 
   release-docker:
 
-    runs-on: blacksmith-16vcpu-ubuntu-2204
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [blacksmith-32vcpu-ubuntu-2204]
         platform: [linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6]
 
     permissions:
@@ -197,10 +197,10 @@ jobs:
   combine-sign:
 
     needs: release-docker
-    runs-on: blacksmith-4vcpu-ubuntu-2204
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [blacksmith-8vcpu-ubuntu-2204]
 
     permissions:
       contents: write
@@ -235,4 +235,3 @@ jobs:
         env:
           TAGS: axelarnet/axelar-core:${{ github.event.inputs.tag }}
           COSIGN_EXPERIMENTAL: 1
-

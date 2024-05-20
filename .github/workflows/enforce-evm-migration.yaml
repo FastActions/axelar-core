@@ -42,4 +42,3 @@ jobs:
           fi
           
           echo "EVM module consensus version has been incremented"
-        
