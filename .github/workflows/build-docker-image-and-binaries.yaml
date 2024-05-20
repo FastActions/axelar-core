@@ -82,7 +82,7 @@ jobs:
           if [ "${{ github.event.inputs.cgo }}" == "true" ]; then
             export CGO_ENABLED=1
           fi
-          OS=$(echo "$OS_TYPE" | sed -e 's/blacksmith-4vcpu-ubuntu-2204/linux/; s/macos-latest/darwin/')
+          OS=$(echo "$OS_TYPE" | sed -e 's/ubuntu-20.04/linux/; s/macos-latest/darwin/')
           make build-binaries-multiarch
           mv ./bin/axelard ./bin/axelard-"$OS"-"$ARCH"-"$SEMVER"
           gpg --armor --detach-sign  ./bin/axelard-"$OS"-"$ARCH"-"$SEMVER"
@@ -144,7 +144,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [blacksmith-32vcpu-ubuntu-2204]
+        os: [ubuntu-20.04]
         platform: [linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6]
 
     permissions:
@@ -200,7 +200,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [blacksmith-8vcpu-ubuntu-2204]
+        os: [ubuntu-20.04]
 
     permissions:
       contents: write
@@ -235,3 +235,4 @@ jobs:
         env:
           TAGS: axelarnet/axelar-core:${{ github.event.inputs.tag }}
           COSIGN_EXPERIMENTAL: 1
+

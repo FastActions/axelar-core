@@ -109,4 +109,3 @@ jobs:
         run: |
           docker image tag axelar/core "${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}-debug"
           docker push "${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}-debug"
-
