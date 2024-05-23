@@ -29,4 +29,3 @@ jobs:
 
       - name: Proto lint
         run: make proto-lint
-
