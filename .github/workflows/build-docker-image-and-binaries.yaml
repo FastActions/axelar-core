@@ -144,7 +144,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [blacksmith-4vcpu-ubuntu-2204]
         platform: [linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6]
 
     permissions:
@@ -200,7 +200,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [blacksmith-4vcpu-ubuntu-2204]
 
     permissions:
       contents: write
