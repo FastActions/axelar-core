@@ -10,7 +10,7 @@ jobs:
         go-version:
           - 1.21
         os:
-          - ubuntu-20.04
+          - blacksmith-4vcpu-ubuntu-2204
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Golang with cache
@@ -19,10 +19,10 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: Install Python
-        uses: actions/setup-python@v3
+        uses: useblacksmith/setup-python@v6
 
       - name: Cache Python
-        uses: actions/cache@v3
+        uses: useblacksmith/cache@v5
         with:
           path: ~/.cache/pip
           key: pip-cache
